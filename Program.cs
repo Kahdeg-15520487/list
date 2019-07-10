@@ -36,6 +36,17 @@ namespace list
 
         private static void RunOptionsAndReturnExitCode(Options opts)
         {
+            if (string.IsNullOrWhiteSpace(opts.Directory))
+            {
+                Console.WriteLine("no target directory");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(opts.Extension))
+            {
+                Console.WriteLine("no target file extension");
+                return;
+            }
+
             string[] exts = opts.Extension.Split("|");
             DirectoryInfo d = new DirectoryInfo(opts.Directory);
             foreach (var ext in exts)
